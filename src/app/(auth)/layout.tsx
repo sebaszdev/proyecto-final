@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Inicio",
-  description: "Proyecto final para la competencia de desarrollo en React",
+  title: "Inicio de sesion",
 };
 
 export default function AuthLayout({

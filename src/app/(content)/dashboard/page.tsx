@@ -1,4 +1,7 @@
 import { Metadata } from "next";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import DashboardSidebar from "@/features/dashboard/DashboardSidebar";
+import DashboardSiteHeader from "@/features/dashboard/DashboardSiteHeader";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -6,8 +9,17 @@ export const metadata: Metadata = {
 
 export default function DashboardPage() {
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold">Dashboard</h1>
-    </div>
-  );
+    <>
+      <SidebarProvider
+        style={{
+          "--sidebar-width": "calc(var(--spacing) * 40)",
+          } as React.CSSProperties
+        }>
+        <DashboardSidebar />
+        <SidebarInset>
+          <DashboardSiteHeader title="Hola"/>
+        </SidebarInset>
+      </SidebarProvider>
+    </>
+ );
 }
