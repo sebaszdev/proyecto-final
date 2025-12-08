@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sidebar";
 import { NavMain } from "./DashboardNav.tsx";
 import type { LucideIcon } from "lucide-react";
+import Link from "next/link.js";
 const nav: {
   title: string,
   url: string,
@@ -19,17 +20,17 @@ const nav: {
 }[] = [
   {
     title: "Personajes",
-    url: "#",
+    url: "/dashboard/characters",
     icon: UsersRound,
   },
   {
     title: "Ubicaciones",
-    url: "#",
+    url: "/dashboard/locations",
     icon: MapPinHouse,
   },
   {
     title: "Episodios",
-    url: "#",
+    url: "/dashboard/episodes",
     icon: Video,
   },
 ];
@@ -43,10 +44,10 @@ export default function DashboardSidebar({ ...props }: React.ComponentProps<type
             <SidebarMenuButton
               asChild
             >
-              <a href="#">
+              <Link href="/dashboard">
                 <ArrowBigUp />
                 <span className="text-base font-semibold">Rick & Morty</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
