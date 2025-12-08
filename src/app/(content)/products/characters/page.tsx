@@ -21,7 +21,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
       <div className="flex justify-center gap-4">
         {data.info.prev && (
           <Button asChild variant="outline">
-            <Link href={`/products?page=${Number(page) - 1}`}>
+            <Link href={`/products/characters?page=${Number(page) - 1}`}>
               ← Anterior
             </Link>
           </Button>
@@ -32,7 +32,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
         </span>
         {data.info.next && (
           <Button asChild variant="outline">
-            <Link href={`/products?page=${Number(page) + 1}`}>
+            <Link href={`/products/characters?page=${Number(page) + 1}`}>
               Siguiente →
             </Link>
           </Button>
