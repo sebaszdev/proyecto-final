@@ -3,16 +3,13 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import CharDetail from "@/components/CharDetail";
 
-export default async function ProductDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  console.log('ProductDetailPage - Received params:', params);
+export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }>; }) {
+
+  const resParams = await params;
+  const id = resParams.id;
 
   try {
-    const character = await getCharacterById(params.id);
-    console.log('Successfully fetched character:', character.name);
+    const character = await getCharacterById(id);
 
     return (
       <div className="p-6 max-w-2xl mx-auto">
@@ -34,7 +31,7 @@ export default async function ProductDetailPage({
           <p className="text-gray-600">
             {error instanceof Error ? error.message : 'No se pudo cargar el personaje'}
           </p>
-          <p className="text-sm text-gray-500 mt-2">ID solicitado: {params.id}</p>
+          <p className="text-sm text-gray-500 mt-2">ID solicitado: {id}</p>
         </div>
       </div>
     );
