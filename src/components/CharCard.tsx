@@ -34,7 +34,7 @@ export default function CharCard({ id, name, status, gender, image, url }: Chara
             </CardContent>
             <CardFooter className="flex-col gap-2">
                 <Button asChild variant="outline" className="w-full">
-                    <Link href={`/products/${id}`}>Ver más</Link>
+                    <Link href={`/products/characters/${id}`}>Ver más</Link>
                 </Button>
             </CardFooter>
         </Card>
