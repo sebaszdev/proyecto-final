@@ -13,9 +13,7 @@ import {
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -46,7 +44,7 @@ export default function DashboardTable<TData, TValue>({ columns, data }: Dashboa
 
   return (
     <>
-      <div className="flex items-center py-4">
+      <div className="flex items-center p-4">
         <Input
           placeholder="Escribe el nombre"
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
@@ -56,8 +54,8 @@ export default function DashboardTable<TData, TValue>({ columns, data }: Dashboa
           className="max-w-sm"
         />
       </div>
-      <div className="overflow-hidden rounded-md border">
-        <Table>
+      <div className="overflow-hidden rounded-md border mx-4">
+        <Table> 
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -100,7 +98,7 @@ export default function DashboardTable<TData, TValue>({ columns, data }: Dashboa
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 p-4">
         <Button
           variant="outline"
           size="sm"
