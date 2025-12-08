@@ -1,44 +1,83 @@
-import { getCharacters } from "@/services/rick_and_morty_client";
-import CharCard from "@/components/CharCard";
-import { CharacterResponse } from "@/types/character";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-export default async function ProductsPage({ searchParams }: { searchParams: Promise<{ page?: string }>; }) {
-  const params = await searchParams;
-  const page = params.page || "1";
-  const data: CharacterResponse = await getCharacters(`/?page=${page}`);
-  return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-6">Personajes</h1>
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
 
-      {/* Grid de personajes */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        {data.results.map((character) => (
-          <CharCard key={character.id} {...character} />
-        ))}
-      </div>
-      {/* Paginación */}
-      <div className="flex justify-center gap-4">
-        {data.info.prev && (
-          <Button asChild variant="outline">
-            <Link href={`/products?page=${Number(page) - 1}`}>
-              ← Anterior
-            </Link>
-          </Button>
-        )}
+export default function ProductsPage() {
+    return (
+        <div className="p-6">
+            <h1 className="text-3xl font-bold mb-2">Productos</h1>
+            <p className="text-gray-600 mb-8">
+                Explora el universo de Rick and Morty
+            </p>
 
-        <span className="flex items-center">
-          Página {page} de {data.info.pages}
-        </span>
-        {data.info.next && (
-          <Button asChild variant="outline">
-            <Link href={`/products?page=${Number(page) + 1}`}>
-              Siguiente →
-            </Link>
-          </Button>
-        )}
-      </div>
-    </div>
-  );
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl">
+                {/* Personajes */}
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Personajes</CardTitle>
+                        <CardDescription>
+                            Descubre todos los personajes de la serie
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-sm text-gray-600">
+                            Explora la lista completa de personajes con información detallada sobre cada uno.
+                        </p>
+                    </CardContent>
+                    <CardFooter>
+                        <Button asChild className="w-full">
+                            <Link href="/products/characters">Ver personajes</Link>
+                        </Button>
+                    </CardFooter>
+                </Card>
+
+                {/* Episodios */}
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Episodios</CardTitle>
+                        <CardDescription>
+                            Todos los episodios de Rick and Morty
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-sm text-gray-600">
+                            Navega por todos los episodios con fechas de emisión y códigos.
+                        </p>
+                    </CardContent>
+                    <CardFooter>
+                        <Button asChild className="w-full">
+                            <Link href="/products/episodes">Ver episodios</Link>
+                        </Button>
+                    </CardFooter>
+                </Card>
+
+                {/* Localizaciones */}
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Localizaciones</CardTitle>
+                        <CardDescription>
+                            Lugares del multiverso de Rick and Morty
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-sm text-gray-600">
+                            Descubre todas las localizaciones y dimensiones del universo.
+                        </p>
+                    </CardContent>
+                    <CardFooter>
+                        <Button asChild className="w-full">
+                            <Link href="/products/locations">Ver localizaciones</Link>
+                        </Button>
+                    </CardFooter>
+                </Card>
+            </div>
+        </div>
+    );
 }
-
