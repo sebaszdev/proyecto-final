@@ -12,7 +12,9 @@ import {
 export default function ProductsPage() {
   return (
     <>
-      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">Productos</h1>
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">
+        Productos
+      </h1>
       <p className="text-muted-foreground mb-8 mt-2">
         Explora el universo de Rick and Morty
       </p>
