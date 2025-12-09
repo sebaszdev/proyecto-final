@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CharCard({
   id,
@@ -35,7 +36,7 @@ export default function CharCard({
         </CardAction>
       </CardHeader>
       <CardContent>
-        <img src={image} alt={name} />
+        <Image src={image} alt={name} width={300} height={300} />
       </CardContent>
       <CardFooter className="flex-col gap-2">
         <Button asChild variant="outline" className="w-full">

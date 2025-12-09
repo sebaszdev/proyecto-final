@@ -1,7 +1,4 @@
 "use client";
-// ideas:
-// usar un estado para la paginacion, el estilo de las cartas me gusta
-// es decir que sea solo una pagina mas no estar renderizando varias paginas
 
 import CharCard from "@/components/CharCard";
 import Link from "next/link";
