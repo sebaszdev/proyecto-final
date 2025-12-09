@@ -29,7 +29,7 @@ export default function LocationsPage() {
       </div>
       <div className="flex justify-center gap-4">
         {info?.prev && (
-          <Button variant="outline" onClick={prev}>
+          <Button variant="outline" onClick={prev} className="cursor-pointer">
               <ArrowLeft />
               Anterior
           </Button>
@@ -40,7 +40,7 @@ export default function LocationsPage() {
         </span>
 
         {info?.next && (
-          <Button variant="outline" onClick={next}>
+          <Button variant="outline" onClick={next} className="cursor-pointer">
               Siguiente
               <ArrowRight />
           </Button>
