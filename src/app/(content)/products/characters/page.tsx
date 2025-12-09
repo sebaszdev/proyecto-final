@@ -3,7 +3,11 @@ import CharCard from "@/components/CharCard";
 import { CharacterResponse } from "@/types/character";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-export default async function ProductsPage({ searchParams }: { searchParams: Promise<{ page?: string }>; }) {
+export default async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
   const params = await searchParams;
   const page = params.page || "1";
   const data: CharacterResponse = await getCharacters(`/?page=${page}`);
@@ -41,4 +45,3 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
     </div>
   );
 }
-
