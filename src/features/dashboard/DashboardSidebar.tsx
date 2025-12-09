@@ -14,9 +14,9 @@ import { NavMain } from "./DashboardNav.tsx";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link.js";
 const nav: {
-  title: string,
-  url: string,
-  icon: LucideIcon,
+  title: string;
+  url: string;
+  icon: LucideIcon;
 }[] = [
   {
     title: "Personajes",
@@ -35,15 +35,15 @@ const nav: {
   },
 ];
 
-export default function DashboardSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export default function DashboardSidebar({
+  ...props
+}: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="none" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-            >
+            <SidebarMenuButton asChild>
               <Link href="/dashboard">
                 <ArrowBigUp />
                 <span className="text-base font-semibold">Rick & Morty</span>

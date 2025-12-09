@@ -8,12 +8,7 @@ export interface Episode {
   created: string;
 }
 
-export interface EpisodeResponse {
-  info: {
-    count: number;
-    pages: number;
-    next: string | null;
-    prev: string | null;
-  };
-  results: Episode[];
+export interface FilterEpisode {
+  name?: string;
+  episode?: string;
 }

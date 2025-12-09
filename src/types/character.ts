@@ -6,8 +6,8 @@ export interface Character {
   type: string;
   gender: string;
   origin: {
-    name: string,
-    url: string,
+    name: string;
+    url: string;
   };
   location: {
     name: string;
@@ -19,14 +19,10 @@ export interface Character {
   created: string;
 }
 
-
-
-export interface CharacterResponse {
-  info: {
-    count: number;
-    pages: number;
-    next: string | null;
-    prev: string | null;
-  };
-  results: Character[];
+export interface FilterCharacter {
+  name?: string;
+  status?: "alive" | "dead" | "unknown";
+  species?: string;
+  type?: string;
+  gender?: "female" | "male" | "genderless" | "unknown";
 }

@@ -8,12 +8,8 @@ export interface Location {
   created: string;
 }
 
-export interface LocationResponse {
-  info: {
-    count: number;
-    pages: number;
-    next: string | null;
-    prev: string | null;
-  };
-  results: Location[];
+export interface FilterLocation {
+  name?: string;
+  type?: string;
+  dimension?: string;
 }

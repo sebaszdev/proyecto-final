@@ -25,9 +25,22 @@ import { useState } from "react";
 interface DashboardTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-};
+  loading: boolean;
+  page: number;
+  pages: number;
+  onNext: () => void;
+  onPrev: () => void;
+}
 
-export default function DashboardTable<TData, TValue>({ columns, data }: DashboardTableProps<TData, TValue>) {
+export default function DashboardTable<TData, TValue>({
+  columns,
+  data,
+  loading,
+  page,
+  pages,
+  onNext,
+  onPrev,
+}: DashboardTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
@@ -39,6 +52,10 @@ export default function DashboardTable<TData, TValue>({ columns, data }: Dashboa
     getFilteredRowModel: getFilteredRowModel(),
     state: {
       columnFilters,
+      pagination: {
+        pageIndex: 0,
+        pageSize: 20,
+      },
     },
   });
 
@@ -54,8 +71,8 @@ export default function DashboardTable<TData, TValue>({ columns, data }: Dashboa
           className="max-w-sm"
         />
       </div>
-      <div className="overflow-hidden rounded-md border mx-4">
-        <Table> 
+      <div className="overflow-y-auto rounded-md border mx-4">
+        <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -66,16 +83,25 @@ export default function DashboardTable<TData, TValue>({ columns, data }: Dashboa
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {loading ? (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  Cargando personajes...
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -83,15 +109,21 @@ export default function DashboardTable<TData, TValue>({ columns, data }: Dashboa
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
-                  No results.
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No hay resultados :(
                 </TableCell>
               </TableRow>
             )}
@@ -102,18 +134,21 @@ export default function DashboardTable<TData, TValue>({ columns, data }: Dashboa
         <Button
           variant="outline"
           size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
+          onClick={onPrev}
+          disabled={page === 1}
         >
-          Previous
+          Anterior
         </Button>
+        <span className="text-xs opacity-70">
+          Página {page} de {pages}
+        </span>
         <Button
           variant="outline"
           size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
+          onClick={onNext}
+          disabled={page === pages}
         >
-          Next
+          Siguiente
         </Button>
       </div>
     </>
