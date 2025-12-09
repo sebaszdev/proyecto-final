@@ -16,23 +16,22 @@ export default function ProductDetailPage() {
   const id = params.id as string;
 
   useEffect(() => {
-    getById(id)
-      .then(data => setCharacter(data));
+    getById(id).then((data) => setCharacter(data));
   }, [id]);
 
-    return (
-      <div className="p-6 max-w-2xl mx-auto">
-        { character ? (
+  return (
+    <div className="p-6 max-w-2xl mx-auto">
+      {character ? (
         <>
           <Button variant="ghost" className="mb-2">
-              <ArrowLeft />
-              <Link href="/products/characters">Volver</Link>
-            </Button>
+            <ArrowLeft />
+            <Link href="/products/characters">Volver</Link>
+          </Button>
           <CharDetail {...character} />
-          </>
-        ) : (
-          <div>Cargando...</div>
-        )}
-      </div>
-    );
-  }
+        </>
+      ) : (
+        <div>Cargando...</div>
+      )}
+    </div>
+  );
+}

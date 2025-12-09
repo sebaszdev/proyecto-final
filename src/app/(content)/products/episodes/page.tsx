@@ -1,51 +1,55 @@
-import { getEpisodes } from "@/services/rick_and_morty_client";
+"use client";
+
 import EpisodeCard from "@/components/EpisodeCard";
-import { EpisodeResponse } from "@/types/episode";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useEpisodes } from "@/hooks/useEpisodes";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
-export default async function EpisodesPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>;
-}) {
-  const params = await searchParams;
-  const page = params.page || "1";
-  const data: EpisodeResponse = await getEpisodes(`?page=${page}`);
+export default function EpisodesPage() {
+  const { page, loading, info, episodes, next, prev } = useEpisodes();
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-6">Episodios</h1>
+    <>
+      {loading ? (
+        <div className="p-6">Cargando...</div>
+      ) : (
+        <>
+          <div className="flex items-center mb-6 w-full gap-x-2">
+            <Button variant="ghost">
+              <ArrowLeft />
+              <Link href="/products">Volver</Link>
+            </Button>
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">
+              Episodios
+            </h1>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            {episodes.map((episode) => (
+              <EpisodeCard key={episode.id} {...episode} />
+            ))}
+          </div>
+          <div className="flex justify-center gap-4">
+            {info?.prev && (
+              <Button variant="outline" onClick={prev}>
+                <ArrowLeft />
+                Anterior
+              </Button>
+            )}
 
-      {/* Grid de episodios */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        {data.results.map((episode) => (
-          <EpisodeCard key={episode.id} {...episode} />
-        ))}
-      </div>
+            <span className="flex items-center">
+              Página {page} de {info?.pages}
+            </span>
 
-      {/* Paginación */}
-      <div className="flex justify-center gap-4">
-        {data.info.prev && (
-          <Button asChild variant="outline">
-            <Link href={`/products/episodes?page=${Number(page) - 1}`}>
-              ← Anterior
-            </Link>
-          </Button>
-        )}
-
-        <span className="flex items-center">
-          Página {page} de {data.info.pages}
-        </span>
-
-        {data.info.next && (
-          <Button asChild variant="outline">
-            <Link href={`/products/episodes?page=${Number(page) + 1}`}>
-              Siguiente →
-            </Link>
-          </Button>
-        )}
-      </div>
-    </div>
+            {info?.next && (
+              <Button variant="outline" onClick={next}>
+                Siguiente
+                <ArrowRight />
+              </Button>
+            )}
+          </div>
+        </>
+      )}
+    </>
   );
 }

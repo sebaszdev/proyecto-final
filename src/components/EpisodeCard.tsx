@@ -4,7 +4,6 @@ import { Episode } from "@/types/episode";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -22,7 +21,7 @@ export default function EpisodeCard({ id, name, air_date, episode }: Episode) {
         <CardDescription>Emitido: {air_date}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm">
           Episodio de la serie Rick and Morty
         </p>
       </CardContent>

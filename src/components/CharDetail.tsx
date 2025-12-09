@@ -13,7 +13,14 @@ export default function CharDetail({
 }: Character) {
   return (
     <div className="flex flex-col md:flex-row gap-6">
-      <Image src={image} alt={name} width={300} height={300} loading="eager" className="rounded-lg" />
+      <Image
+        src={image}
+        alt={name}
+        width={300}
+        height={300}
+        loading="eager"
+        className="rounded-lg"
+      />
 
       <div className="flex-1">
         <h1 className="text-3xl font-bold mb-4">{name}</h1>

@@ -3,7 +3,7 @@
 import CharCard from "@/components/CharCard";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useCharacters } from "@/hooks/useCharacters";
 
 export default function ProductsPage() {
@@ -32,16 +32,19 @@ export default function ProductsPage() {
           <div className="flex justify-center gap-4">
             {info?.prev && (
               <Button variant="outline" onClick={prev}>
-                ← Anterior
+                <ArrowLeft />
+                Anterior
               </Button>
             )}
 
             <span className="flex items-center">
               Página {page} de {info?.pages}
             </span>
+
             {info?.next && (
               <Button variant="outline" onClick={next}>
-                Siguiente →
+                Siguiente
+                <ArrowRight />
               </Button>
             )}
           </div>

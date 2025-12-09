@@ -22,7 +22,7 @@ export default function LocationCard({ id, name, type, dimension }: Location) {
         <CardDescription>Dimensión: {dimension}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm">
           Localización del universo de Rick and Morty
         </p>
       </CardContent>

@@ -1,51 +1,53 @@
-import { getLocations } from "@/services/rick_and_morty_client";
+"use client";
+
 import LocationCard from "@/components/LocationCard";
-import { LocationResponse } from "@/types/location";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useLocations } from "@/hooks/useLocations";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
-export default async function LocationsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>;
-}) {
-  const params = await searchParams;
-  const page = params.page || "1";
-  const data: LocationResponse = await getLocations(`?page=${page}`);
+export default function LocationsPage() {
+  const { page, loading, info, locations, next, prev } = useLocations();
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-6">Localizaciones</h1>
-
-      {/* Grid de localizaciones */}
+    <>
+      {loading ? (
+        <div className="p-6">Cargando...</div>
+      ) : (
+      <>
+      <div className="flex items-center mb-6 w-full gap-x-2">
+      <Button variant="ghost">
+        <ArrowLeft />
+        <Link href="/products">Volver</Link>
+      </Button>
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">Localizaciones</h1>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        {data.results.map((location) => (
+        {locations.map((location) => (
           <LocationCard key={location.id} {...location} />
         ))}
       </div>
-
-      {/* Paginación */}
       <div className="flex justify-center gap-4">
-        {data.info.prev && (
-          <Button asChild variant="outline">
-            <Link href={`/products/locations?page=${Number(page) - 1}`}>
-              ← Anterior
-            </Link>
+        {info?.prev && (
+          <Button variant="outline" onClick={prev}>
+              <ArrowLeft />
+              Anterior
           </Button>
         )}
 
         <span className="flex items-center">
-          Página {page} de {data.info.pages}
+          Página {page} de {info?.pages}
         </span>
 
-        {data.info.next && (
-          <Button asChild variant="outline">
-            <Link href={`/products/locations?page=${Number(page) + 1}`}>
-              Siguiente →
-            </Link>
+        {info?.next && (
+          <Button variant="outline" onClick={next}>
+              Siguiente
+              <ArrowRight />
           </Button>
         )}
       </div>
-    </div>
+      </>
+      )}
+      </>
   );
 }
