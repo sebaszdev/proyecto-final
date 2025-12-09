@@ -11,15 +11,15 @@ import {
 
 export default function ProductsPage() {
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-2">Productos</h1>
-      <p className="text-gray-600 mb-8">
+    <>
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">Productos</h1>
+      <p className="text-muted-foreground mb-8 mt-2">
         Explora el universo de Rick and Morty
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl">
         {/* Personajes */}
-        <Card>
+        <Card className="flex flex-col justify-between">
           <CardHeader>
             <CardTitle>Personajes</CardTitle>
             <CardDescription>
@@ -27,7 +27,7 @@ export default function ProductsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm">
               Explora la lista completa de personajes con información detallada
               sobre cada uno.
             </p>
@@ -40,7 +40,7 @@ export default function ProductsPage() {
         </Card>
 
         {/* Episodios */}
-        <Card>
+        <Card className="flex flex-col justify-between">
           <CardHeader>
             <CardTitle>Episodios</CardTitle>
             <CardDescription>
@@ -48,7 +48,7 @@ export default function ProductsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm">
               Navega por todos los episodios con fechas de emisión y códigos.
             </p>
           </CardContent>
@@ -60,7 +60,7 @@ export default function ProductsPage() {
         </Card>
 
         {/* Localizaciones */}
-        <Card>
+        <Card className="flex flex-col justify-between">
           <CardHeader>
             <CardTitle>Localizaciones</CardTitle>
             <CardDescription>
@@ -68,7 +68,7 @@ export default function ProductsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm">
               Descubre todas las localizaciones y dimensiones del universo.
             </p>
           </CardContent>
@@ -79,6 +79,6 @@ export default function ProductsPage() {
           </CardFooter>
         </Card>
       </div>
-    </div>
+    </>
   );
 }

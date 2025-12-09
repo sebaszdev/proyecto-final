@@ -9,5 +9,5 @@ export default function ProductsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <section className="flex-1 container mx-auto p-6">{children}</section>;
+  return <section className="flex-1 max-w-screen mx-auto p-6">{children}</section>;
 }
