@@ -18,3 +18,11 @@ export interface Character {
   url: string;
   created: string;
 }
+
+export interface FilterCharacter {
+  name?: string;
+  status?: "alive" | "dead" | "unknown";
+  species?: string;
+  type?: string;
+  gender?: "female" | "male" | "genderless" | "unknown";
+}

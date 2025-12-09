@@ -7,3 +7,8 @@ export interface Episode {
   url: string;
   created: string;
 }
+
+export interface FilterEpisode {
+  name?: string;
+  episode?: string;
+}
