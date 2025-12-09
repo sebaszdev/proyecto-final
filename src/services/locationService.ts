@@ -1,18 +1,17 @@
 import { FilterLocation } from "@/types";
 
-export async function getAll(params?: { page?: string, filter?: FilterLocation }) {
+export async function getAll(params?: {
+  page?: string;
+  filter?: FilterLocation;
+}) {
   const searchParams = new URLSearchParams({
     ...(params?.page ? { page: params.page } : {}),
     ...(params?.filter || {}),
   });
 
-  const query = searchParams.toString()
+  const query = searchParams.toString();
 
-  const res = await fetch(
-    query 
-    ? `/api/location?${query}`
-    : `/api/location`
-  );
+  const res = await fetch(query ? `/api/location?${query}` : `/api/location`);
 
   return res.json();
 }

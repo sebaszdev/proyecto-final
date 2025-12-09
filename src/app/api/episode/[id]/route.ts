@@ -10,7 +10,7 @@ export async function GET(
   const { id } = await params;
 
   const res = await fetch(`${API_URL}/episode/${id}`);
-  
+
   const data: Episode = await res.json();
 
   return NextResponse.json(data);

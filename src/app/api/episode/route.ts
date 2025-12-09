@@ -12,9 +12,7 @@ export async function GET(req?: NextRequest) {
   const query = req?.nextUrl.searchParams.toString();
 
   const res = await fetch(
-    query
-    ? `${API_URL}/episode/?${query}`
-    : `${API_URL}/episode`
+    query ? `${API_URL}/episode/?${query}` : `${API_URL}/episode`,
   );
 
   const data: ApiResponse<Episode> = await res.json();

@@ -8,17 +8,16 @@ const API_URL = process.env.API_URL;
  * @params
  * NextRequest with searchParams
  */
-export async function GET(req?: NextRequest): Promise<NextResponse<ApiResponse<Character>>> {
+export async function GET(
+  req?: NextRequest,
+): Promise<NextResponse<ApiResponse<Character>>> {
   const query = req?.nextUrl.searchParams.toString();
 
   const res = await fetch(
-   query
-    ? `${API_URL}/character/?${query}`
-    : `${API_URL}/character`
+    query ? `${API_URL}/character/?${query}` : `${API_URL}/character`,
   );
 
   const data: ApiResponse<Character> = await res.json();
 
   return NextResponse.json(data);
 }
-

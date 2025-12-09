@@ -20,21 +20,27 @@ export default function DashboardCharacters() {
 
   return (
     <SidebarProvider
-      style={{
-        "--sidebar-width": "calc(var(--spacing) * 40)",
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 40)",
         } as React.CSSProperties
-      }>
+      }
+    >
       <DashboardSidebar />
       <SidebarInset>
-        <DashboardSiteHeader title="Personajes"/>
+        <DashboardSiteHeader title="Personajes" />
         <DashboardCardsSection>
           <Card className="py-12">
             <CardHeader>
               <span className="flex items-center justify-center gap-x-2">
-                <CardTitle className="text-xl text-center">Personajes</CardTitle>
+                <CardTitle className="text-xl text-center">
+                  Personajes
+                </CardTitle>
                 <CircleUserRound />
               </span>
-              <CardDescription className="text-center">Busca entre los 826 personajes disponibles</CardDescription>
+              <CardDescription className="text-center">
+                Busca entre los 826 personajes disponibles
+              </CardDescription>
             </CardHeader>
           </Card>
           <Card className="py-12">
@@ -43,20 +49,34 @@ export default function DashboardCharacters() {
                 <CardTitle className="text-xl text-center">Nombre</CardTitle>
                 <BookSearch />
               </span>
-              <CardDescription className="text-center">Busca tu personaje favorito por su nombre</CardDescription>
+              <CardDescription className="text-center">
+                Busca tu personaje favorito por su nombre
+              </CardDescription>
             </CardHeader>
           </Card>
           <Card className="py-12">
             <CardHeader>
               <span className="flex items-center justify-center gap-x-2">
-                <CardTitle className="text-xl text-center">Vivo o muerto</CardTitle>
+                <CardTitle className="text-xl text-center">
+                  Vivo o muerto
+                </CardTitle>
                 <SlidersHorizontal />
               </span>
-              <CardDescription className="text-center">Filtra por estado, especie o tipo</CardDescription>
+              <CardDescription className="text-center">
+                Filtra por estado, especie o tipo
+              </CardDescription>
             </CardHeader>
           </Card>
         </DashboardCardsSection>
-        <DashboardTable columns={CharacterColumns} data={characters} loading={loading} page={page} pages={info?.pages ?? 1} onNext={next} onPrev={prev} />
+        <DashboardTable
+          columns={CharacterColumns}
+          data={characters}
+          loading={loading}
+          page={page}
+          pages={info?.pages ?? 1}
+          onNext={next}
+          onPrev={prev}
+        />
       </SidebarInset>
     </SidebarProvider>
   );

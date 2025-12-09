@@ -1,18 +1,17 @@
 import { FilterEpisode } from "@/types";
 
-export async function getAll(params?: { page?: string, filter?: FilterEpisode }) {
+export async function getAll(params?: {
+  page?: string;
+  filter?: FilterEpisode;
+}) {
   const searchParams = new URLSearchParams({
     ...(params?.page ? { page: params.page } : {}),
     ...(params?.filter || {}),
   });
 
-  const query = searchParams.toString()
+  const query = searchParams.toString();
 
-  const res = await fetch(
-    query 
-    ? `/api/episode?${query}`
-    : `/api/episode`
-  );
+  const res = await fetch(query ? `/api/episode?${query}` : `/api/episode`);
 
   return res.json();
 }

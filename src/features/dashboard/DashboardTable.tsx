@@ -30,9 +30,17 @@ interface DashboardTableProps<TData, TValue> {
   pages: number;
   onNext: () => void;
   onPrev: () => void;
-};
+}
 
-export default function DashboardTable<TData, TValue>({ columns, data, loading, page, pages, onNext, onPrev }: DashboardTableProps<TData, TValue>) {
+export default function DashboardTable<TData, TValue>({
+  columns,
+  data,
+  loading,
+  page,
+  pages,
+  onNext,
+  onPrev,
+}: DashboardTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
@@ -64,7 +72,7 @@ export default function DashboardTable<TData, TValue>({ columns, data, loading, 
         />
       </div>
       <div className="overflow-y-auto rounded-md border mx-4">
-        <Table> 
+        <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -75,18 +83,21 @@ export default function DashboardTable<TData, TValue>({ columns, data, loading, 
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
-                  )
+                  );
                 })}
               </TableRow>
             ))}
           </TableHeader>
           <TableBody>
-            { loading ? (
+            {loading ? (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   Cargando personajes...
                 </TableCell>
               </TableRow>
@@ -98,14 +109,20 @@ export default function DashboardTable<TData, TValue>({ columns, data, loading, 
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No hay resultados :(
                 </TableCell>
               </TableRow>

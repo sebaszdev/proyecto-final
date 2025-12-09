@@ -42,6 +42,7 @@ export function useLocationStore() {
     prev: () => {
       if (info?.prev) setPage(page + 1);
     },
-    reload: (pageNum?: number, appliedFilters?: FilterLocation) => loadLocations(pageNum ?? page, appliedFilters ?? filters),
+    reload: (pageNum?: number, appliedFilters?: FilterLocation) =>
+      loadLocations(pageNum ?? page, appliedFilters ?? filters),
   };
 }

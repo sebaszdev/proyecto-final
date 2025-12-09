@@ -46,4 +46,3 @@ export function useCharacterStore() {
       loadCharacters(pageNum ?? page, appliedFilters ?? filters),
   };
 }
-

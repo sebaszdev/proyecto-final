@@ -20,13 +20,15 @@ export default function DashboardEpisodes() {
 
   return (
     <SidebarProvider
-      style={{
-        "--sidebar-width": "calc(var(--spacing) * 40)",
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 40)",
         } as React.CSSProperties
-      }>
+      }
+    >
       <DashboardSidebar />
       <SidebarInset>
-        <DashboardSiteHeader title="Episodios"/>
+        <DashboardSiteHeader title="Episodios" />
         <DashboardCardsSection>
           <Card className="py-12">
             <CardHeader>
@@ -34,7 +36,9 @@ export default function DashboardEpisodes() {
                 <CardTitle className="text-xl text-center">Episodios</CardTitle>
                 <Tv />
               </span>
-              <CardDescription className="text-center">Busca entre los 51 episodios disponibles</CardDescription>
+              <CardDescription className="text-center">
+                Busca entre los 51 episodios disponibles
+              </CardDescription>
             </CardHeader>
           </Card>
           <Card className="py-12">
@@ -43,7 +47,9 @@ export default function DashboardEpisodes() {
                 <CardTitle className="text-xl text-center">Nombre</CardTitle>
                 <BookSearch />
               </span>
-              <CardDescription className="text-center">Busca tu episodio favorito por su nombre</CardDescription>
+              <CardDescription className="text-center">
+                Busca tu episodio favorito por su nombre
+              </CardDescription>
             </CardHeader>
           </Card>
           <Card className="py-12">
@@ -52,13 +58,22 @@ export default function DashboardEpisodes() {
                 <CardTitle className="text-xl text-center">Filtra</CardTitle>
                 <SlidersHorizontal />
               </span>
-              <CardDescription className="text-center">Filtra por nombre o código de episodio</CardDescription>
+              <CardDescription className="text-center">
+                Filtra por nombre o código de episodio
+              </CardDescription>
             </CardHeader>
           </Card>
         </DashboardCardsSection>
-        <DashboardTable columns={EpisodeColumns} data={episodes} loading={loading} page={page} pages={info?.pages ?? 1} onNext={next} onPrev={prev} />
+        <DashboardTable
+          columns={EpisodeColumns}
+          data={episodes}
+          loading={loading}
+          page={page}
+          pages={info?.pages ?? 1}
+          onNext={next}
+          onPrev={prev}
+        />
       </SidebarInset>
     </SidebarProvider>
-
   );
 }

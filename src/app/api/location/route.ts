@@ -12,13 +12,10 @@ export async function GET(req?: NextRequest) {
   const query = req?.nextUrl.searchParams.toString();
 
   const res = await fetch(
-   query
-    ? `${API_URL}/location/?${query}`
-    : `${API_URL}/location`
+    query ? `${API_URL}/location/?${query}` : `${API_URL}/location`,
   );
 
   const data: ApiResponse<Location> = await res.json();
 
   return NextResponse.json(data);
 }
-

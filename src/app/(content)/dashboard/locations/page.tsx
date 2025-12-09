@@ -20,21 +20,27 @@ export default function DashboardLocations() {
 
   return (
     <SidebarProvider
-      style={{
-        "--sidebar-width": "calc(var(--spacing) * 40)",
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 40)",
         } as React.CSSProperties
-      }>
+      }
+    >
       <DashboardSidebar />
       <SidebarInset>
-        <DashboardSiteHeader title="Ubicaciones"/>
+        <DashboardSiteHeader title="Ubicaciones" />
         <DashboardCardsSection>
           <Card className="py-12">
             <CardHeader>
               <span className="flex items-center justify-center gap-x-2">
-                <CardTitle className="text-xl text-center">Localizaciones</CardTitle>
+                <CardTitle className="text-xl text-center">
+                  Localizaciones
+                </CardTitle>
                 <Building2 />
               </span>
-              <CardDescription className="text-center">Busca entre las 126 Localizaciones disponibles</CardDescription>
+              <CardDescription className="text-center">
+                Busca entre las 126 Localizaciones disponibles
+              </CardDescription>
             </CardHeader>
           </Card>
           <Card className="py-12">
@@ -43,7 +49,9 @@ export default function DashboardLocations() {
                 <CardTitle className="text-xl text-center">Nombre</CardTitle>
                 <BookSearch />
               </span>
-              <CardDescription className="text-center">Busca tu lugar favorito por su nombre</CardDescription>
+              <CardDescription className="text-center">
+                Busca tu lugar favorito por su nombre
+              </CardDescription>
             </CardHeader>
           </Card>
           <Card className="py-12">
@@ -52,11 +60,21 @@ export default function DashboardLocations() {
                 <CardTitle className="text-xl text-center">Filtra</CardTitle>
                 <SlidersHorizontal />
               </span>
-              <CardDescription className="text-center">Filtra por tipo o dimension</CardDescription>
+              <CardDescription className="text-center">
+                Filtra por tipo o dimension
+              </CardDescription>
             </CardHeader>
           </Card>
         </DashboardCardsSection>
-        <DashboardTable columns={LocationColumns} data={locations} loading={loading} page={page} pages={info?.pages ?? 1} onNext={next} onPrev={prev} />
+        <DashboardTable
+          columns={LocationColumns}
+          data={locations}
+          loading={loading}
+          page={page}
+          pages={info?.pages ?? 1}
+          onNext={next}
+          onPrev={prev}
+        />
       </SidebarInset>
     </SidebarProvider>
   );
